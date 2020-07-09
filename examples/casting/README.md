@@ -1,0 +1,3 @@
+# casting/
+
+Type casting example
