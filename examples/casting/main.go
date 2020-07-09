@@ -35,8 +35,6 @@ func main() {
 
 	// One way
 	for i := 0; i < 100; i++ {
-		// Read https://golang.org/pkg/unsafe/ for more
-
 		arr := *(*[100]int)(pMat)
 		// Note that we can dereference pMat as an ARRAY (which is just like C array, continuous static list of elements)
 		// but not as SLICE ! *(*[]int)(pMat) will result in error due to the reason explained above.
@@ -68,6 +66,11 @@ func main() {
 	// So be cautious of variable scope
 	// Don't use pointer casting outside of data's lifespan.
 	// Go GCs variables when they are out-of-reach
+
+	// Read:
+	//
+	// https://blog.gopheracademy.com/advent-2017/unsafe-pointer-and-system-calls/
+	// https://blog.gopheracademy.com/advent-2017/unsafe-pointer-and-system-calls/
 
 	return
 }
