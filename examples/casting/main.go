@@ -45,7 +45,7 @@ func main() {
 		fmt.Printf("%d\n", arr[i])
 	}
 
-	// Another way
+	// Another way with manual pointer arithmetic
 	for i := 0; i < 100; i++ {
 		// uintptr is just uint, representing memory address
 		index := uintptr(i)                      // which is i
@@ -53,7 +53,7 @@ func main() {
 
 		num := *(*int)(unsafe.Pointer(uintptr(pMat) + index*stride))
 		// Convert pMat unsafe pointer to uintptr for pointer arithmetic,
-		// start from pMat, go index * stride bytes,
+		// start from address: pMat, go (index * stride) bytes,
 		// convert that address into unsafe pointer,
 		// then cast it as an pointer pointing to integer data,
 		// then dereference it.
@@ -67,6 +67,7 @@ func main() {
 	// you'll have segmentation fault.
 	// So be cautious of variable scope
 	// Don't use pointer casting outside of data's lifespan.
+	// Go GCs variables when they are out-of-reach
 
 	return
 }
