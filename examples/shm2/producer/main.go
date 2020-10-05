@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	shMem, err := shm.Create(4096)
+	shMem, err := shm.Create(800)
 	if err != nil {
 		log.Fatal("Failed to create shared memory region")
 	}
@@ -38,11 +38,10 @@ func main() {
 	scanner.ReadString('\n')
 
 	for j := 0; j < 100; j++ {
-		index := uintptr(j)
-		stride := uintptr(unsafe.Sizeof(float64(0)))
+		pAddr := (*[100]float64)(pBase)
+		arr := *pAddr
 
-		addr := (*float64)(unsafe.Pointer(uintptr(pBase) + index*stride))
-		fmt.Printf("NUM: %f\n", *addr)
+		fmt.Printf("NUM: %f\n", arr[j])
 	}
 
 	shMem.Detach(pBase)
