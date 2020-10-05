@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	for (int i = 0; i < 100; i++) {
-		pBase[i] = i * i;
+		printf("NUM: %lf\n", pBase[i]);
 	}
 
 	return 0;

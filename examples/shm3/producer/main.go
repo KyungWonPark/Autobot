@@ -37,14 +37,6 @@ func main() {
 	fmt.Println("Press ENTER to Continue")
 	scanner.ReadString('\n')
 
-	for j := 0; j < 100; j++ {
-		index := uintptr(j)
-		stride := uintptr(unsafe.Sizeof(float64(0)))
-
-		addr := (*float64)(unsafe.Pointer(uintptr(pBase) + index*stride))
-		fmt.Printf("NUM: %f\n", *addr)
-	}
-
 	shMem.Detach(pBase)
 	shMem.Destroy()
 
